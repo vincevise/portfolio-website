@@ -43,7 +43,7 @@ const UrbansemScene = ({width, height}:Props) => {
     const outlinedObjects = [];
     
     // Shadow setup function
-    function setShadowProperties(object) {
+    function setShadowProperties(object: any) {
       if (object.isMesh) {
         object.castShadow = true;
         object.receiveShadow = true;
@@ -57,7 +57,7 @@ const UrbansemScene = ({width, height}:Props) => {
     }
     
     // Outline function
-    function addOutlineToMesh(mesh) {
+    function addOutlineToMesh(mesh: any) {
       // Create wireframe edges
       const edges = new THREE.EdgesGeometry(mesh.geometry);
       const edgesMaterial = new THREE.LineBasicMaterial({ 
@@ -80,11 +80,11 @@ const UrbansemScene = ({width, height}:Props) => {
     }
     
     // Model loading function
-    function loadModel(path, position) {
+    function loadModel(path: string, position: THREE.Vector3Like) {
       gltfLoader.load(
         path,
         (gltf) => {
-          gltf.scene.traverse(child => {
+          gltf.scene.traverse((child:any) => {
             if (child.isMesh) {
               child.castShadow = true;
               child.receiveShadow = true;
@@ -104,7 +104,7 @@ const UrbansemScene = ({width, height}:Props) => {
           scene.add(gltf.scene);
           
           // Now that the model is added to the scene, add outlines
-          gltf.scene.traverse(child => {
+          gltf.scene.traverse((child:any) => {
             if (child.isMesh) {
               addOutlineToMesh(child);
             }
@@ -134,7 +134,7 @@ const UrbansemScene = ({width, height}:Props) => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    const directionalLight: any = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.set(2048, 2048);
     directionalLight.shadow.camera.near = 0.1;
@@ -192,7 +192,7 @@ const UrbansemScene = ({width, height}:Props) => {
     // Animation loop
     const clock = new THREE.Clock();
     let previousTime = 0;
-    let mixer = null;
+    let mixer:any = null;
     
     const tick = () => {
       const elapsedTime = clock.getElapsedTime();
@@ -224,14 +224,14 @@ const UrbansemScene = ({width, height}:Props) => {
       renderer.dispose();
       
       // Dispose of scene resources
-      scene.traverse((object) => {
+      scene.traverse((object:any) => {
         if (object.geometry) {
           object.geometry.dispose();
         }
         
         if (object.material) {
           if (Array.isArray(object.material)) {
-            object.material.forEach(material => material.dispose());
+            object.material.forEach((material: { dispose: () => any; }) => material.dispose());
           } else {
             object.material.dispose();
           }

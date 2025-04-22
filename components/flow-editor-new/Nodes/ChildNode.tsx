@@ -1,21 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Edge, Handle, MarkerType, Node, NodeProps, NodeToolbar, Position, useReactFlow } from '@xyflow/react';
-import { v4 as uuidv4 } from 'uuid';
+import { Edge, Handle, Node, NodeProps, NodeToolbar, Position, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { FaLightbulb, FaUser } from 'react-icons/fa';
-import { CustomNodeType, useLayoutedElements } from '../Mainflow';
-import { BiPlus } from 'react-icons/bi';
-import { BsFillLightbulbFill } from 'react-icons/bs';
-import NodeHeader from '../NodeTitle';
+import { useEffect, useState } from 'react';
 import { AiOutlineFunction } from 'react-icons/ai';
+import { BiPlus } from 'react-icons/bi';
 import { IoMdTrash } from 'react-icons/io';
+import { CustomNodeType, useLayoutedElements } from '../Mainflow';
+import NodeHeader from '../NodeTitle';
 import { createEdge, createNode } from '../utils/utils';
-import React from 'react';
 
 const handleStyle = { left: 10 };
 
-function ChildNode({ id, data, isConnectable }: NodeProps) {
-  const { addNodes, addEdges, getEdges, getNodes, setNodes, setEdges, deleteElements, getNode } = useReactFlow();
+function ChildNode({ id,  isConnectable }: NodeProps) {
+  const {   getEdges, getNodes, setNodes, setEdges, deleteElements, getNode } = useReactFlow();
   const [hasChild, setHasChild] = useState(false);
 
   const {getLayoutedElements} = useLayoutedElements()
@@ -83,7 +79,6 @@ function ChildNode({ id, data, isConnectable }: NodeProps) {
     }
   };
 
-  const handleStyle = { width: '8px', height: '8px', background: 'white', border: '1px solid black' }
 
 
 

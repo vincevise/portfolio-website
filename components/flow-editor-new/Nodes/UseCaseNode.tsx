@@ -7,12 +7,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { CustomNodeType, useLayoutedElements } from '../Mainflow';
 import NodeHeader from '../NodeTitle';
 
-const handleStyle = { left: 10 };
 
-function UseCaseNode({ id, data, isConnectable }: NodeProps) {
+function UseCaseNode({ id, isConnectable }: NodeProps) {
 
   const {getLayoutedElements} = useLayoutedElements()
-  const { addNodes, addEdges, getEdges, getNodes, setNodes, setEdges } = useReactFlow();
+  const {   getEdges, getNodes, setNodes, setEdges } = useReactFlow();
   const [hasChild, setHasChild] = useState(false);
 
   useEffect(() => {

@@ -60,7 +60,7 @@ const Vav3d = ({width, height}:Porps) => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    const directionalLight:any = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.set(2048, 2048);
     directionalLight.shadow.camera.near = 0.1;
@@ -89,7 +89,7 @@ const Vav3d = ({width, height}:Porps) => {
     scene.add(floor);
     
     // Helper functions
-    function setShadowProperties(object) {
+    function setShadowProperties(object:any) {
       if (object.isMesh) {
         object.castShadow = true;
         object.receiveShadow = true;
@@ -102,13 +102,13 @@ const Vav3d = ({width, height}:Porps) => {
       }
     }
     
-    function loadModel(path, position) {
+    function loadModel(path:any, position:any) {
       const gltfLoader = new GLTFLoader();
       
       gltfLoader.load(
         path,
         (gltf) => {
-          gltf.scene.traverse(child => {
+          gltf.scene.traverse((child:any) => {
             if (child.isMesh) {
               child.castShadow = true;
               child.receiveShadow = true;
@@ -156,7 +156,7 @@ const Vav3d = ({width, height}:Porps) => {
     // Animation
     const clock = new THREE.Clock();
     let previousTime = 0;
-    let mixer = null;
+    let mixer:any = null;
     
     const tick = () => {
       const elapsedTime = clock.getElapsedTime();
