@@ -11,8 +11,6 @@
   "dependencies": {
     "@dagrejs/dagre": "^1.1.4",
     "@headlessui/react": "^2.2.0",
-    "@react-three/drei": "^10.0.6",
-    "@react-three/fiber": "^9.1.2",
     "@xyflow/react": "^12.3.5",
     "country-state-city": "^3.2.1",
     "dagre": "^0.8.5",
