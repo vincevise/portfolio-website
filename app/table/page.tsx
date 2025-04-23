@@ -3059,7 +3059,6 @@ const lead_data = [
 ];
 
 const Table = ( ) => {
- const router = useRouter()
 
   const columns2: Column<any>[] = useMemo(
     () => [
@@ -3159,7 +3158,6 @@ const Table = ( ) => {
     setLeadsData((prev) => ({ ...prev, limit }));
   }, []);
 
-  console.log(router.query, 'router.query')
   
 
   return (
