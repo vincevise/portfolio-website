@@ -26,7 +26,7 @@ const MassHousingScene: React.FC = () => {
       object.children.forEach(setShadowProperties);
     };
 
-    const createLOD = (model: THREE.Object3D) => {
+    const createLOD = (model: any) => {
       const lod = new THREE.LOD();
       lod.addLevel(model, 0);
       lod.addLevel(model.clone().scale.set(0.5, 0.5, 0.5), 50);

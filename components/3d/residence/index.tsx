@@ -134,9 +134,9 @@ const ResidenceViewer: React.FC<ResidenceViewerProps> = () => {
       gltfLoader.load(
         path,
         (gltf) => {
-          gltf.scene.traverse(child => {
+          gltf.scene.traverse((child:any) => {
             if ((child as THREE.Mesh).isMesh) {
-              const mesh = child as THREE.Mesh;
+              const mesh:any = child as THREE.Mesh;
               mesh.castShadow = true;
               mesh.receiveShadow = true;
               mesh.material.side = THREE.DoubleSide;
@@ -164,7 +164,7 @@ const ResidenceViewer: React.FC<ResidenceViewerProps> = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2)
+    const directionalLight:any = new THREE.DirectionalLight(0xffffff, 2)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(2048, 2048)
 directionalLight.shadow.camera.near = 0.1;

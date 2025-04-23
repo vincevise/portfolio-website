@@ -76,7 +76,7 @@ const SafakatHouseScene = ({
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    const directionalLight:any = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.set(2048, 2048);
     directionalLight.shadow.camera.near = 0.1;
@@ -129,24 +129,31 @@ const SafakatHouseScene = ({
               const mesh = child as THREE.Mesh;
               mesh.castShadow = true;
               mesh.receiveShadow = true;
-              mesh.material.side = THREE.DoubleSide;
-              
-              // Create edges geometry and line segments
+      
+              if (Array.isArray(mesh.material)) {
+                mesh.material.forEach(mat => {
+                  mat.side = THREE.DoubleSide;
+                });
+              } else {
+                mesh.material.side = THREE.DoubleSide;
+              }
+      
               const edges = new THREE.EdgesGeometry(mesh.geometry);
               const edgesMaterial = new THREE.LineBasicMaterial({ color: 0x000000 });
               const lines = new THREE.LineSegments(edges, edgesMaterial);
               mesh.add(lines);
             }
           });
-          
+      
           gltf.scene.children.forEach(child => {
             setShadowProperties(child);
           });
-          
+      
           gltf.scene.position.copy(position);
           scene.add(gltf.scene);
         }
       );
+      
     }
     
     // Load model
@@ -172,7 +179,7 @@ const SafakatHouseScene = ({
     // Animation
     const clock = new THREE.Clock();
     let previousTime = 0;
-    let mixer: THREE.AnimationMixer | null = null;
+    let mixer: any = null;
     
     const tick = () => {
       const elapsedTime = clock.getElapsedTime();
